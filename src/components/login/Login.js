@@ -12,7 +12,7 @@ export default function LoginPage(){
                 {/* <!--=====TIÊU ĐỀ======--> */}
                 <form className="login100-form validate-form">
                     <span className="login100-form-title">
-                        <b>ĐĂNG NHẬP HỆ THỐNG POS</b>
+                        <b>ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ</b>
                     </span>
                     {/* <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======--> */}
                     <form action="">
