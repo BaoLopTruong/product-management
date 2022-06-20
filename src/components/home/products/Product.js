@@ -1,30 +1,31 @@
-import axios from 'axios';
 import '../../../main.css'
+
+import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from "react-redux";
 
 export default function ProductPage() {
+    const products = useSelector(state => state.products);
+    const navigate = useNavigate();
+    // const [products, setProducts] = useState([])
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     axios.get(`http://localhost:3001/products/`)
+    //         .then(res => {
+    //             setProducts(res.data)
+    //         })
+    //         .catch(err => {
+    //             throw err
+    //         })
+    //         .finally(() => {
+    //             // console.log(status)
+    //         })
+    // });
 
-    const [products, setProducts] = useState([])
-    const [status, setStatus] = useState([])
-    useEffect(() => {
-        axios.get(`http://localhost:3001/products/`)
-            .then(res => {
-                setProducts(res.data)
-                for (let index = 0; index < res.data.length; index++) {
-                    setStatus({ name: res.data[index].status })
-                    console.log('status: ' + res.data[index].status)
-                }
-
-            })
-            .catch(err => {
-                throw err
-            })
-            .finally(() => {
-                // console.log(status)
-            })
-    });
-    const handleStatus = () => {
-        console.log(status)
+    const handleEdit = (e) => {
+        navigate(`/product/${e.target.id}`)
+        console.log(e.target.id)
     }
 
 
@@ -40,29 +41,29 @@ export default function ProductPage() {
                                     Tạo mới sản phẩm</a>
                             </div>
                             <div className="col-sm-2">
-                                <a className="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onClick="myFunction(this)"><i
-                                    className="fas fa-file-upload"></i> Tải từ file</a>
+                                <span className="btn btn-delete btn-sm nhap-tu-file" type="button" title="Nhập" onClick="myFunction(this)"><i
+                                    className="fas fa-file-upload"></i> Tải từ file</span>
                             </div>
 
                             <div className="col-sm-2">
-                                <a className="btn btn-delete btn-sm print-file" type="button" title="In" onClick="myApp.printTable()"><i
-                                    className="fas fa-print"></i> In dữ liệu</a>
+                                <span className="btn btn-delete btn-sm print-file" type="button" title="In" onClick="myApp.printTable()"><i
+                                    className="fas fa-print"></i> In dữ liệu</span>
                             </div>
                             <div className="col-sm-2">
-                                <a className="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
-                                    className="fas fa-copy"></i> Sao chép</a>
+                                <span className="btn btn-delete btn-sm print-file js-textareacopybtn" type="button" title="Sao chép"><i
+                                    className="fas fa-copy"></i> Sao chép</span>
                             </div>
 
                             <div className="col-sm-2">
-                                <a className="btn btn-excel btn-sm" href="" title="In"><i className="fas fa-file-excel"></i> Xuất Excel</a>
+                                <span className="btn btn-excel btn-sm" href="" title="In"><i className="fas fa-file-excel"></i> Xuất Excel</span>
                             </div>
                             <div className="col-sm-2">
-                                <a className="btn btn-delete btn-sm pdf-file" type="button" title="In" onClick="myFunction(this)"><i
-                                    className="fas fa-file-pdf"></i> Xuất PDF</a>
+                                <span className="btn btn-delete btn-sm pdf-file" type="button" title="In" onClick="myFunction(this)"><i
+                                    className="fas fa-file-pdf"></i> Xuất PDF</span>
                             </div>
                             <div className="col-sm-2">
-                                <a className="btn btn-delete btn-sm" type="button" title="Xóa" onClick={handleStatus}><i
-                                    className="fas fa-trash-alt"></i> Xóa tất cả </a>
+                                <span className="btn btn-delete btn-sm" type="button" title="Xóa"><i
+                                    className="fas fa-trash-alt"></i> Xóa tất cả </span>
                             </div>
                         </div>
                         <table className="table table-hover table-bordered" id="sampleTable">
@@ -91,18 +92,18 @@ export default function ProductPage() {
                                         <td>{product.price}</td>
                                         <td>{product.category}</td>
                                         <td>
-                                        <button style={{marginRight: '5px'}} class="btn btn-primary btn-sm edit" type="button" title="Sửa"
-                                                id="show-emp" data-toggle="modal" data-target="#ModalUP">
-                                                <i class="fas fa-edit"></i>
+
+                                            <button style={{ marginRight: '5px' }} className="btn btn-primary btn-sm edit" type="button" title="Sửa"
+                                                id={product.id} data-toggle="modal" data-target="#ModalUP" onClick={handleEdit}>
+                                                <i id={product.id} className="fas fa-edit"></i>
                                             </button>
-                                            <button  class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                onclick="myFunction(this)">
-                                                <i class="fas fa-trash-alt"></i>
+
+                                            <button className="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                onClick={handleEdit}>
+                                                <i className="fas fa-trash-alt"></i>
                                             </button>
-                                           
+
                                         </td>
-
-
                                     </tr>
                                 ))}
                             </tbody>

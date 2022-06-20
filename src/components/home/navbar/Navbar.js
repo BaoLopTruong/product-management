@@ -1,6 +1,6 @@
 import '../../../main.css'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+
 
 export default function Navbar() {
 
@@ -8,7 +8,7 @@ export default function Navbar() {
             <div >
                   <header className="app-header">
                         {/* <!-- Sidebar toggle button--> */}
-                        <a className="app-sidebar__toggle"  data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+                        <span className="app-sidebar__toggle"  data-toggle="sidebar" aria-label="Hide Sidebar"></span>
                         {/* <!-- Navbar Right Menu--> */}
                         <ul className="app-nav">
                               {/* <!-- User Menu--> */}
@@ -41,7 +41,7 @@ export default function Navbar() {
                                     </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item " href="table-data-table.html">
+                                    <a className="app-menu__item " href="table-data">
                                           <i className='app-menu__icon bx bx-id-card'></i>
                                           <span className="app-menu__label">Quản lý nhân viên</span>
                                     </a>
@@ -57,10 +57,10 @@ export default function Navbar() {
                                     </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item" href="table-data-oder.html">
+                                    <Link to={'/edit'} className="app-menu__item" href="table-data-oder.html">
                                           <i className='app-menu__icon bx bx-task'></i>
                                           <span className="app-menu__label">Quản lý đơn hàng</span>
-                                    </a>
+                                    </Link>
                               </li>
                               <li>
                                     <a className="app-menu__item" href="table-data-banned.html">
@@ -90,10 +90,10 @@ export default function Navbar() {
                                     </a>
                               </li>
                               <li>
-                                    <a className="app-menu__item" href="#">
+                                    <span className="app-menu__item" href="#">
                                           <i className='app-menu__icon bx bx-cog'></i>
                                           <span className="app-menu__label">Cài đặt hệ thống</span>
-                                    </a>
+                                    </span>
                               </li>
                         </ul>
                   </aside>

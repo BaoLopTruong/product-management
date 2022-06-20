@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function Clock() {
     const [year, setYear] = useState('');
+    const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
     const [date, setDate] = useState('');
     const [hours, setHours] = useState('');
@@ -12,26 +13,28 @@ export default function Clock() {
         const updateTime = () => {
             let now = new Date();
             setYear(now.getFullYear());
-            // validate month, date, hours, minitues, seconds
-            if(now.getMonth() + 1 <10){
-                let month = "0" + (now.getMonth()+1)
-                setMonth( month);
+            let weekday = new Array(7);
+            weekday[0] = "Chủ Nhật";
+            weekday[1] = "Thứ Hai";
+            weekday[2] = "Thứ Ba";
+            weekday[3] = "Thứ Tư";
+            weekday[4] = "Thứ Năm";
+            weekday[5] = "Thứ Sáu";
+            weekday[6] = "Thứ Bảy";
+            let day = weekday[now.getDay()];
+            setDay(day);
+            setMonth(checkTime(now.getMonth()+1))
+            setDate(checkTime(now.getDate()));
+            setHours(checkTime(now.getHours()));
+            setMintues(checkTime(now.getMinutes()));
+            setSeconds(checkTime(now.getSeconds()));
+        }
+        
+        const checkTime =(time) =>{
+            if(time <10){
+               time = "0" + (time); 
             }
-            else{
-                setMonth(now.getMonth() + 1);
-            }
-            setDate(now.getDate());
-            if(now.getHours() <10){
-                let hours = "0" + (now.getHours())
-                setHours(hours)
-            }
-            else{
-                setHours(now.getHours());
-            }
-            
-            setMintues(now.getMinutes());
-            setSeconds(now.getSeconds());
-    
+            return time;
         }
     
         setInterval(() => {
@@ -49,7 +52,8 @@ export default function Clock() {
                         <ul className="app-breadcrumb breadcrumb">
                             <li className="breadcrumb-item"><b>Bảng điều khiển</b></li>
                         </ul>
-                        <div id="clock" ><span className='date'>   <p>{hours}:{mintues}:{seconds} / {date}-{month}-{year}</p></span>  </div>
+                        <div id="clock" ><span className='date'> <p style={{float: 'right'}}>{hours}:{mintues}:{seconds} </p> <br></br>   
+                        <p style={{ float: 'right'}}> {day}, ngày {date}, tháng {month}, năm {year}</p></span>  </div>
                     </div>
                 </div>
             </div>

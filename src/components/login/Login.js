@@ -1,7 +1,25 @@
 import './login.css'
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fakeLogin } from "../../redux/action";
 export default function LoginPage() {
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [user, setUser] = useState({ username: "", password: "" });
+    const userlogined = useSelector(state => state.userlogined);
+    const setValueForUser = (key, value) => {
+      const newVal = { ...user, [key]: value };
+      setUser(newVal);
+    };
+    const login = () => {
+      dispatch(fakeLogin(user));
+    };
+    useEffect(() => {
+      if (userlogined.username) {
+        navigate("/");
+      }
+    }, [userlogined, navigate]);
 
     return (
         <div className="limiter">
@@ -21,7 +39,7 @@ export default function LoginPage() {
                                 {/* <input className="input100" type="text" placeholder="Tài khoản quản trị" name="username"
                                 id="username"> </input> */}
                                 <input className="input100" type="text" name="username"
-                                    id="username" placeholder='Tài khoản quản trị'></input>
+                                    id="username" placeholder='Tài khoản quản trị' onChange={e => setValueForUser("username", e.target.value)}></input>
                                 <span className="focus-input100"></span>
                                 <span className="symbol-input100">
                                     {/* <i className='bx bx-user'></i> */}
@@ -32,7 +50,7 @@ export default function LoginPage() {
                             {/* <input autoComplete="off" className="input100" type="password" placeholder="Mật khẩu"
                                 name="current-password" id="password-field"> </input> */}
                                 <input autoComplete="off" className="input100" type="password" placeholder="Mật khẩu"
-                                name="current-password" id="password-field"></input>
+                                name="current-password" id="password"  onChange={e => setValueForUser("password", e.target.value)}></input>
                                  
                             {/* <span toggle="#password-field" className="bi bi-eye click-eye"></span> */}
                             <span className="focus-input100"></span>
@@ -44,7 +62,7 @@ export default function LoginPage() {
                             {/* <!--=====ĐĂNG NHẬP======--> */}
                             <div className="container-login100-form-btn">
                                 {/* <input type="button" value="Đăng nhập" id="submit"  > </input>  */}
-                               <input type="button" value="Đăng nhập" id="submit"></input>
+                               <input type="button" value="Đăng nhập" id="submit"  onClick={() => { login(); }}></input>
                             </div>
                             {/* <!--=====LINK TÌM MẬT KHẨU======--> */}
                             <div className="text-right p-t-12">
