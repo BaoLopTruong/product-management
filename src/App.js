@@ -1,14 +1,25 @@
+import './main.css'
 
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./components/home/HomePage";
 import LayOut from "./components/home/Layout";
-
 import ProductPage from "./components/home/products/Product";
 import ProductDetail from "./components/home/products/ProductDetail";
 
-import './main.css'
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 
 function App() {
+  const navigate = useNavigate();
+  const userlogined = useSelector(state => state.userlogined);
+  
+  useEffect(() => {
+    if (!userlogined.username) {
+      navigate("/login");
+    }
+  }, [userlogined, navigate]);
   return (
     <div className="app sidebar-mini rtl">
       <LayOut>

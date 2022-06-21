@@ -29,10 +29,10 @@ export default function Navbar() {
                         <hr></hr>
                         <ul className="app-menu">
                               <li>
-                                    <a className="app-menu__item haha" href="phan-mem-ban-hang.html">
+                                    <Link to={'/sell'} className="app-menu__item haha" >
                                           <i className='app-menu__icon bx bx-cart-alt'></i>
                                           <span className="app-menu__label">POS Bán Hàng</span>
-                                    </a>
+                                    </Link>
                               </li>
                               <li>
                                     <Link to={'/'} className="app-menu__item active">
@@ -41,10 +41,10 @@ export default function Navbar() {
                                     </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item " href="table-data">
+                                    <Link to={'/staff'} className="app-menu__item " >
                                           <i className='app-menu__icon bx bx-id-card'></i>
                                           <span className="app-menu__label">Quản lý nhân viên</span>
-                                    </a>
+                                    </Link>
                               </li>
                               {/* <li><a className="app-menu__item" href="#">
                                     <i className='app-menu__icon bx bx-user-voice'></i>
@@ -63,37 +63,37 @@ export default function Navbar() {
                                     </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item" href="table-data-banned.html">
+                                    <Link to={'/internal'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-run'></i>
                                           <span
                                                 className="app-menu__label">Quản lý nội bộ
                                           </span>
-                                    </a>
+                                    </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item" href="table-data-money.html">
+                                    <Link to={'/tablemoney'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-dollar'></i>
                                           <span
                                                 className="app-menu__label">Bảng kê lương</span>
-                                    </a>
+                                    </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item" href="quan-ly-bao-cao.html">
+                                    <Link to={'/report'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-pie-chart-alt-2'></i>
                                           <span className="app-menu__label">Báo cáo doanh thu</span>
-                                    </a>
+                                    </Link>
                               </li>
                               <li>
-                                    <a className="app-menu__item" href="page-calendar.html">
+                                    <Link to={'/schedule'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-calendar-check'></i>
                                           <span className="app-menu__label">Lịch công tác </span>
-                                    </a>
+                                    </Link>
                               </li>
                               <li>
-                                    <span className="app-menu__item" href="#">
+                                    <Link to={'/setting'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-cog'></i>
                                           <span className="app-menu__label">Cài đặt hệ thống</span>
-                                    </span>
+                                    </Link>
                               </li>
                         </ul>
                   </aside>
