@@ -131,7 +131,7 @@ export default function ProductPage(props) {
                                             <td></td>
                                             <td>{product.id}</td>
                                             <td title={product.mota}>{product.name}</td>
-                                            <td><img style={{ width: "50px", height: '50px' }} src={product.image} alt='sản phẩm hiện chưa có hình ảnh' title={product.mota} /></td>
+                                            <td style={{textAlign: 'center'}}><img style={{ width: "50px", height: '50px' }} src={product.image} alt='The product has no img' title={product.mota} /></td>
                                             <td>{product.amount}</td>
                                             <td><span className="badge bg-success">{product.status}</span></td>
                                             <td>{product.price}</td>

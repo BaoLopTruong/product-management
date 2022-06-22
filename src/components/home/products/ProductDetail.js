@@ -75,7 +75,7 @@ export default function ProductDetail() {
         <div className="form-group col-md-3">
           <label className="control-label">Mã sản phẩm </label>
 
-          <input className="form-control" type="number" value={product.id || ""} placeholder="" name='id' onChange={handleChange}></input>
+          <input className="form-control" type="number" value={product.id || ""} placeholder="" name='id' readOnly></input>
         </div>
         <div className="form-group col-md-3">
           <label className="control-label">Tên sản phẩm</label>
