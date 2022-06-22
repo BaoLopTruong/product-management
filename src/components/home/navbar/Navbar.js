@@ -1,8 +1,9 @@
 import '../../../main.css'
 import { Link } from 'react-router-dom'
+// import Clock from './Clock'
 
 
-export default function Navbar() {
+export default function Navbar(props) {
 
       return (
             <div >
@@ -12,8 +13,8 @@ export default function Navbar() {
                         {/* <!-- Navbar Right Menu--> */}
                         <ul className="app-nav">
                               {/* <!-- User Menu--> */}
-                              <li><a className="app-nav__item" href="/index.html"><i className='bx bx-log-out bx-rotate-180'></i> </a>
-                              </li>
+                              {/* <li><a className="app-nav__item" href="/index.html"><i className='bx bx-log-out bx-rotate-180'></i> </a>
+                              </li> */}
                         </ul>
                   </header>
                   {/* <!-- Sidebar menu--> */}
@@ -22,20 +23,20 @@ export default function Navbar() {
                         <div className="app-sidebar__user">
                               {/* <img className="app-sidebar__user-avatar" src="/images/hay.jpg" width="50px" alt="User Image"> </img> */}
                               <div>
-                                    <p className="app-sidebar__user-name"><b>Le Ngoc Bao</b></p>
+                                    <p className="app-sidebar__user-name"><b>Lê Ngọc Bảo</b></p>
                                     <p className="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
                               </div>
                         </div>
                         <hr></hr>
                         <ul className="app-menu">
                               <li>
-                                    <Link to={'/sell'} className="app-menu__item haha" >
+                                    <Link to={{pathname:'/sell', state: "POS Bán Hàng" }} className="app-menu__item haha" >
                                           <i className='app-menu__icon bx bx-cart-alt'></i>
                                           <span className="app-menu__label">POS Bán Hàng</span>
                                     </Link>
                               </li>
                               <li>
-                                    <Link to={'/'} className="app-menu__item active">
+                                    <Link to={'/'} className="app-menu__item ">
                                           <i className='app-menu__icon bx bx-tachometer'></i>
                                           <span className="app-menu__label">Bảng điều khiển</span>
                                     </Link>
@@ -51,13 +52,13 @@ export default function Navbar() {
                                     <span className="app-menu__label">Quản lý khách hàng</span></a>
                               </li> */}
                               <li>
-                                    <Link to={'/product'} className="app-menu__item" >
+                                    <Link to={{pathname:'/product', state:{name:"Danh mục sản phẩm", category:"product"}}} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-purchase-tag-alt'></i>
                                           <span className="app-menu__label">Quản lý sản phẩm</span>
                                     </Link>
                               </li>
                               <li>
-                                    <Link to={'/edit'} className="app-menu__item" href="table-data-oder.html">
+                                    <Link to={'/product/add'} className="app-menu__item" href="table-data-oder.html">
                                           <i className='app-menu__icon bx bx-task'></i>
                                           <span className="app-menu__label">Quản lý đơn hàng</span>
                                     </Link>
@@ -84,7 +85,7 @@ export default function Navbar() {
                                     </Link>
                               </li>
                               <li>
-                                    <Link to={'/schedule'} className="app-menu__item" >
+                                    <Link to={'/cenderlar'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-calendar-check'></i>
                                           <span className="app-menu__label">Lịch công tác </span>
                                     </Link>
@@ -97,6 +98,17 @@ export default function Navbar() {
                               </li>
                         </ul>
                   </aside>
+                  <div className="row">
+                <div className="col-md-12">
+                    <div className="app-title">
+                        <ul className="app-breadcrumb breadcrumb">
+                            <li className="breadcrumb-item"><b> {props.location}</b></li>
+                        </ul>
+                        {/* <div id="clock" ><span className='date'> <p style={{float: 'right'}}>{hours}:{mintues}:{seconds} </p> <br></br>   
+                        <p style={{ float: 'right'}}> {day}, ngày {date}, tháng {month}, năm {year}</p></span>  </div> */}
+                    </div>
+                </div>
+            </div>
             </div>
       )
 }

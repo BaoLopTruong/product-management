@@ -6,6 +6,13 @@ export const FETCH_PRODUCT = "FETCH_PRODUCT";
 export const FETCH_PRODUCT_SUCCESS = "FETCH_FETCH_PRODUCT_SUCCESS";
 export const FETCH_USER = "FETCH_USER";
 export const FETCH_USER_SUCCESS = "FETCH_FETCH_USER_SUCCESS";
+export const FETCH_ADD_PRODUCT = "FETCH_ADD_PRODUCT";
+export const FETCH_ADD_PRODUCT_SUCCESS = "FETCH_ADD_PRODUCT_SUCCESS";
+export const FETCH_EDIT_PRODUCT = "FETCH_EDIT_PRODUCT";
+export const FETCH_EDIT_PRODUCT_SUCCESS = "FETCH_EDIT_PRODUCT_SUCCESS";
+export const FETCH_DELETE_PRODUCT = "FETCH_DELETE_PRODUCT";
+export const FETCH_DELETE_PRODUCT_SUCCESS = "FETCH_DELETE_PRODUCT_SUCCESS";
+
 export const fakeLogin = payload => {
   return async dispatch => {
     const { username, password } = payload;
@@ -40,5 +47,40 @@ export const getUsers = () => {
       type: FETCH_USER_SUCCESS ,
       payload: response.data
     })
+  }
+}
+
+
+export const addNewProduct = (product) => {
+  return async dispatch => {
+    const response = await axios.post("http://localhost:3001/products/", product);
+    dispatch({
+      type: FETCH_ADD_PRODUCT_SUCCESS,
+      payload: response.data
+    });
+    dispatch(getProducts());
+  }
+}
+
+
+export const editProduct = (product) => {
+  return async dispatch => {
+    const response = await axios.put(`http://localhost:3001/products/${product.id}`, product);
+    dispatch({
+      type: FETCH_EDIT_PRODUCT_SUCCESS,
+      payload: response.data
+    });
+    dispatch(getProducts());
+  }
+}
+
+export const deleteProduct = (productId) => {
+  return async dispatch => {
+    const response = await axios.delete(`http://localhost:3001/products/`+ productId);
+    dispatch({
+      type: FETCH_DELETE_PRODUCT_SUCCESS,
+      payload: response.data
+    });
+    // dispatch(getProducts());
   }
 }

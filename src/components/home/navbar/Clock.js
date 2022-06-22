@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function Clock() {
+export default function Clock(props) {
     const [year, setYear] = useState('');
     const [day, setDay] = useState('');
     const [month, setMonth] = useState('');
@@ -50,7 +50,7 @@ export default function Clock() {
                 <div className="col-md-12">
                     <div className="app-title">
                         <ul className="app-breadcrumb breadcrumb">
-                            <li className="breadcrumb-item"><b>Bảng điều khiển</b></li>
+                            <li className="breadcrumb-item"><b> {props.name}</b></li>
                         </ul>
                         <div id="clock" ><span className='date'> <p style={{float: 'right'}}>{hours}:{mintues}:{seconds} </p> <br></br>   
                         <p style={{ float: 'right'}}> {day}, ngày {date}, tháng {month}, năm {year}</p></span>  </div>

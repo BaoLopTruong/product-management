@@ -1,86 +1,147 @@
 import '../../../main.css'
-import { useNavigate, useParams} from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+// import { useDispatch, useSelector } from "react-redux";
+// import { editProduct } from '../../../redux/action';
+
 export default function ProductDetail() {
-    const { productId } = useParams();
-    const [product, setProduct] = useState([]);
-    const navigate = useNavigate();
-    
-    useEffect(() => { 
-        axios.get(`http://localhost:3001/products/${productId}`)
-        .then(res =>{
-            setProduct(res.data);
-        })
-        .catch(err =>{
-            throw err;
-        })
-       
-    });
+  const { productId } = useParams();
+  const [product, setProduct] = useState({});
 
-    const handleCancel = (e) =>{
-        navigate('/product')
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  useEffect(() => {
+    if (productId) {
+      axios.get(`http://localhost:3001/products/${productId}`)
+        .then(res => {
+          setProduct(res.data);
+
+        })
+        .catch(err => {
+          throw err;
+        })
+        .finally(() => {
+          console.log(product)
+        })
     }
+  }, [productId]);
 
-    return (
-   
-        <div className="modal-body">
-        <div className="row">
-          <div className="form-group  col-md-12">
-            <span className="thong-tin-thanh-toan">
-              <h5>Chỉnh sửa thông tin sản phẩm cơ bản</h5>
-            </span>
-          </div>
+  const handleCancel = (e) => {
+    navigate('/product')
+  }
+  const handleSave = () => {
+    axios.put(`http://localhost:3001/products/${productId}`, product)
+      .then(res => {
+        alert("Update successfully");
+        navigate('/product');
+      })
+      .catch(err => {
+        alert("something wrong")
+      })
+  }
+  const handleChange = (e) => {
+    setProduct({
+      ...product,
+      [e.target.name]: e.target.value
+    })
+    console.log(product)
+  }
+
+  const  handleChangeImage =(event) => {
+      
+    if(event.target.files && event.target.files[0]){
+      // console.log(URL.createObjectURL(event.target.files[0]))
+      //setContact({ image: URL.createObjectURL(event.target.files[0]) });
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        setProduct({ ...product, image: event.target.result });
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
+  return (
+
+    <div className="modal-body">
+      <div className="row">
+        <div className="form-group  col-md-12">
+          <span className="thong-tin-thanh-toan">
+            <h5>Chỉnh sửa thông tin sản phẩm</h5>
+          </span>
         </div>
-        <div className="row">
-          <div className="form-group col-md-6">
-              <label className="control-label">Mã sản phẩm </label>
-              <input className="form-control" type="number" value={product.id || ""}></input>
-            </div>
-          <div className="form-group col-md-6">
-              <label className="control-label">Tên sản phẩm</label>
-            <input className="form-control" type="text" value={product.name || ""}></input>
-          </div>
-          <div className="form-group  col-md-6">
-              <label className="control-label">Số lượng</label>
-            <input className="form-control" type="number" value={product.amount || ""}></input>
-          </div>
-          <div className="form-group col-md-6 ">
-              <label htmlFor="exampleSelect1" className="control-label">Tình trạng sản phẩm</label>
-              <select className="form-control" id="exampleSelect1">
-                <option>Còn hàng</option>
-                <option>Hết hàng</option>
-                <option>Đang nhập hàng</option>
-              </select>
-            </div>
-            <div className="form-group col-md-6">
-              <label className="control-label">Giá bán</label>
-              <input className="form-control" type="text" value={product.price || ""}></input>
-            </div>
-            <div className="form-group col-md-6">
-              <label htmlFor="exampleSelect1" className="control-label">Danh mục</label>
-              <select className="form-control" id="exampleSelect1">
-                <option>Bàn ăn</option>
-                <option>Bàn thông minh</option>
-                <option>Tủ</option>
-                <option>Ghế gỗ</option>
-                <option>Ghế sắt</option>
-                <option>Giường người lớn</option>
-                <option>Giường trẻ em</option>
-                <option>Bàn trang điểm</option>
-                <option>Giá đỡ</option>
-              </select>
-            </div>
-        </div>
-        <br></br>
-
-          <br></br>
-        <button className="btn btn-save" type="button">Lưu lại</button>
-        <button className="btn btn-cancel" type="button" onClick={handleCancel}>Hủy Bỏ</button>
-
-        {/* <a className="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a> */}
-        <br></br>
       </div>
-    )
+      <form className="row">
+        <div className="form-group col-md-3">
+          <label className="control-label">Mã sản phẩm </label>
+
+          <input className="form-control" type="number" value={product.id || ""} placeholder="" name='id' onChange={handleChange}></input>
+        </div>
+        <div className="form-group col-md-3">
+          <label className="control-label">Tên sản phẩm</label>
+          <input className="form-control" type="text" value={product.name || ""} name='name' onChange={handleChange} ></input>
+        </div>
+        <div className="form-group  col-md-3">
+          <label className="control-label">Số lượng</label>
+
+          <input className="form-control" type="number" value={product.amount || ""} name='amount' onChange={handleChange} ></input>
+        </div>
+        <div className="form-group col-md-3 ">
+          <label htmlFor="exampleSelect1" className="control-label">Tình trạng</label>
+          <select className="form-control" id="exampleSelect1" value={product.status || ""} name='status' onChange={handleChange}>
+            <option value="none">-- Chọn tình trạng --</option>
+            <option value="Còn hàng">Còn hàng</option>
+            <option value="Hết hàng">Hết hàng</option>
+          </select>
+        </div>
+        <div className="form-group col-md-3">
+          <label htmlFor="exampleSelect1" className="control-label">Danh mục</label>
+          <select className="form-control" id="exampleSelect1" value={product.category || ""} name='category' onChange={handleChange}>
+            <option value="none">-- Chọn danh mục --</option>
+            <option value="Bàn ăn">Bàn ăn</option>
+            <option value="Bàn thông minh">Bàn thông minh</option>
+            <option value="Tủ">Tủ</option>
+            <option value="Ghế gỗ">Ghế gỗ</option>
+            <option value="Ghế sắt">Ghế sắt</option>
+            <option value="Giường người lớn">Giường người lớn</option>
+            <option value="Giường trẻ em">Giường trẻ em</option>
+            <option value="Bàn trang điểm">Bàn trang điểm</option>
+            <option value="Giá đỡ">Giá đỡ</option>
+            <option value="Điện thoại di động">Điện thoại di động</option>
+
+          </select>
+        </div>
+        <div className="form-group col-md-3 ">
+          <label htmlFor="exampleSelect1" className="control-label">Nhà cung cấp</label>
+          <select className="form-control" id="exampleSelect1" value={product.ncc || ""} name='ncc' onChange={handleChange}>
+            <option value="none">-- Chọn nhà cung cấp --</option>
+            <option value="Phong vũ">Phong vũ</option>
+            <option value="Thế giới di động">Thế giới di động</option>
+            <option value="FPT">FPT</option>
+            <option value="Orther">Orther</option>
+          </select>
+        </div>
+        <div className="form-group col-md-3">
+          <label className="control-label">Giá bán</label>
+          <input className="form-control" type="text" value={product.price || ""} name='price' onChange={handleChange} ></input>
+        </div>
+
+        <div className="form-group col-md-12">
+          <label className="control-label">Ảnh sản phẩm</label>
+          <div id="myfileupload">
+            <input type="file" id="uploadfile" name="image" onChange={handleChangeImage} ></input>
+          </div>
+        </div>
+        <div className="form-group col-md-12">
+          <label className="control-label">Mô tả sản phẩm</label>
+          <textarea className="form-control" value={product.mota || ""} name="mota" id="mota" onChange={handleChange}></textarea>
+          {/* <script>CKEDITOR.replace('mota');</script> */}
+        </div>
+      </form>
+      <button className="btn btn-save" type="button" onClick={handleSave}>Lưu lại</button>
+      <button className="btn btn-cancel" type="button" onClick={handleCancel}>Hủy Bỏ</button>
+      <br></br>
+    </div>
+  )
 
 }
