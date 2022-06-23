@@ -11,6 +11,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Cenderlar from './components/home/Cendelar';
+import StaffPage from './components/home/staff/Staff';
+import StaffAdd from './components/home/staff/StaffAdd';
+import StaffDetail from './components/home/staff/StaffDetail';
 
 
 
@@ -32,6 +35,12 @@ function App() {
           <Route path="/product/add" element={<ProductAdd />}></Route>
           <Route path={`/product/:productId`} element={<ProductDetail/>}></Route>
           <Route path={'/cenderlar'} element={<Cenderlar/>}></Route>
+          <Route path={'/staff'} element={<StaffPage/>}></Route>
+          <Route path={'/staff/add'} element={<StaffAdd/>}></Route>
+          <Route path={`/staff/:staffId`} element={<StaffDetail/>}></Route>
+
+
+
         </Routes>
       </LayOut>
 

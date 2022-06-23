@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { addNewProduct } from '../../../redux/action';
 import { useDispatch, useSelector } from "react-redux";
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
 export default function ProductAdd() {
 
     const [product, setProduct] = useState({});
@@ -18,7 +18,7 @@ export default function ProductAdd() {
         axios.get("http://localhost:3001/products/")
         .then(res =>{
             console.log(res.data[res.data.length-1].id)
-            setNewId(res.data[res.data.length-1].id)
+            setNewId(parseInt( res.data[res.data.length-1].id) + 1 )
         })
         .catch(err =>{
             console.log(err)
