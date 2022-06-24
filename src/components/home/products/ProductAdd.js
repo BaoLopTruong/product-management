@@ -1,6 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom'
-// import { addNewProduct } from '../../../redux/action';
-// import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Title from '../navbar/Title';
@@ -10,10 +8,6 @@ export default function ProductAdd() {
     const [product, setProduct] = useState({});
     const [ newId, setNewId] = useState({});
     const navigate = useNavigate();
-
-    // const dispatch = useDispatch();
-    // const userlogined = useSelector(state => state.userlogined);
-    // const products = useSelector(state => state.products);
 
     useEffect(() => {
         axios.get("http://localhost:3001/products/")

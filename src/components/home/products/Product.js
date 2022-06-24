@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'
 import Title from '../navbar/Title';
 
-export default function ProductPage(props) {
+export default function ProductPage() {
 
     const navigate = useNavigate();
     const [products, setProducts] = useState([])
@@ -13,7 +13,6 @@ export default function ProductPage(props) {
     useEffect(() => {
         axios.get(`http://localhost:3001/products/`)
             .then(res => {
-                //console.log(res.data)
                 sortProduct(res.data)
                 setProducts(res.data)
             })
@@ -21,7 +20,6 @@ export default function ProductPage(props) {
                 throw err
             })
             .finally(() => {
-                // console.log(products)
             })
     });
 
@@ -54,7 +52,6 @@ export default function ProductPage(props) {
                 console.log("no swap")
             }
         }
-        // console.log(products)
     }
 
     return (
@@ -81,7 +78,9 @@ export default function ProductPage(props) {
                             <table className="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th width="10"><input type="checkbox" id="all"></input></th>
+                                        <th width="10">
+                                        {/* <input type="checkbox" id="all"></input> */}
+                                        </th>
                                         <th>Mã sản phẩm</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Ảnh</th>
