@@ -8,7 +8,7 @@ export default function Report() {
     const [countProduct, setCountProduct] = useState(0);
     const [topProduct, setTopProduct] = useState([]);
     const [overProduct, setOverProduct] = useState([]);
-   
+
 
     const [staff, setStaff] = useState(0);
     const [newStaff, setNewstaff] = useState([]);
@@ -54,7 +54,7 @@ export default function Report() {
                 setStaff(res.data.length)
                 let data = res.data;
                 let array = [];
-                for(let i = data.length-1; i >=data.length-4; i--){
+                for (let i = data.length - 1; i >= data.length - 4; i--) {
                     array[i] = data[i]
                 }
                 setNewstaff(array)
@@ -67,9 +67,9 @@ export default function Report() {
             .then(res => {
                 setOrder(res.data)
                 let data = res.data
-                let total =0;
-                for(let i =0; i<data.length; i++){
-                    if(data[i].total){
+                let total = 0;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].total) {
                         total = total + parseFloat(data[i].total)
                     }
                 }
@@ -310,25 +310,22 @@ export default function Report() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                             {newStaff.map(staff =>(
-                                <tr key={staff.id}>
-                                    <td>{staff.name}</td>
-                                    <td>{staff.address}</td>
-                                    <td>{staff.dateofbirth}</td>
-                                    <td>{staff.gender}</td>
-                                    <td>{staff.numberphone}</td>
-                                    <td>{staff.position}</td>
-                                </tr>
-                             ))}
+                                    {newStaff.map(staff => (
+                                        <tr key={staff.id}>
+                                            <td>{staff.name}</td>
+                                            <td>{staff.address}</td>
+                                            <td>{staff.dateofbirth}</td>
+                                            <td>{staff.gender}</td>
+                                            <td>{staff.numberphone}</td>
+                                            <td>{staff.position}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }
