@@ -21,7 +21,7 @@ export default function Report() {
 
     useEffect(() => {
         //total products
-        axios.get('http://localhost:3001/products')
+        axios.get('https://json-server-api-product.herokuapp.com/products')
             .then(res => {
                 let data = res.data;
                 let total = 0;
@@ -36,7 +36,7 @@ export default function Report() {
                 throw err;
             })
         //top product
-        axios.get('http://localhost:3001/products')
+        axios.get('https://json-server-api-product.herokuapp.com/products')
             .then(res => {
                 let data = res.data;
                 let array = []
@@ -49,7 +49,7 @@ export default function Report() {
                 throw err;
             })
         //total staff
-        axios.get('http://localhost:3001/staffs')
+        axios.get('https://json-server-api-product.herokuapp.com/staffs')
             .then(res => {
                 setStaff(res.data.length)
                 let data = res.data;
@@ -63,7 +63,7 @@ export default function Report() {
                 throw err;
             })
         //data orders 
-        axios.get('http://localhost:3001/orders')
+        axios.get('https://json-server-api-product.herokuapp.com/orders')
             .then(res => {
                 setOrder(res.data)
                 let data = res.data
@@ -79,7 +79,7 @@ export default function Report() {
                 throw err;
             })
         // total orders
-        axios.get('http://localhost:3001/orders')
+        axios.get('https://json-server-api-product.herokuapp.com/orders')
             .then(res => {
                 setTotalOrder(res.data.length)
             })
@@ -87,7 +87,7 @@ export default function Report() {
                 throw err;
             })
         // count product het hang
-        axios.get('http://localhost:3001/products')
+        axios.get('https://json-server-api-product.herokuapp.com/products')
             .then(res => {
                 let data = res.data;
                 let total = 0;
@@ -105,7 +105,7 @@ export default function Report() {
                 throw err;
             })
         // don hang da huy    
-        axios.get('http://localhost:3001/orders')
+        axios.get('https://json-server-api-product.herokuapp.com/orders')
             .then(res => {
                 let data = res.data;
                 let total = 0;
@@ -163,7 +163,7 @@ export default function Report() {
                     <div className="widget-small primary coloured-icon"><i className='icon fa-3x bx bxs-chart' ></i>
                         <div className="info">
                             <h4>Tổng thu nhập</h4>
-                            <p><b>104.890.000 đ</b></p>
+                            <p><b>{totalPriceOrder}0.000  đ</b></p>
                         </div>
                     </div>
                 </div>
