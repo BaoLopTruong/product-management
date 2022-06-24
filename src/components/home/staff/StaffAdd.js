@@ -1,21 +1,15 @@
 import "../../../main.css"
 
 import { Link, useNavigate } from 'react-router-dom'
-// import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Title from "../navbar/Title";
-
 
 export default function StaffAdd() {
 
     const [staff, setStaff] = useState({});
     const [newId, setNewId] = useState({});
-
-
     const navigate = useNavigate();
-    // const userlogined = useSelector(state => state.userlogined);
-    // const products = useSelector(state => state.products);
 
     useEffect(() => {
         axios.get("http://localhost:3001/staffs/")
@@ -32,7 +26,7 @@ export default function StaffAdd() {
                     id: newId
                 })
             })
-    }, [newId]);
+    });
 
     const handleChange = (e) => {
         setStaff({
@@ -42,10 +36,6 @@ export default function StaffAdd() {
         console.log(staff)
     }
     const handleAdd = () => {
-        // dispatch(addNewProduct(product))
-        // alert("Add New Product Successfully");
-        // console.log(products)
-        // navigate('/product/')
         axios.post("http://localhost:3001/staffs/", staff)
             .then(res => {
                 alert("Add new Product Succesfully");
