@@ -1,9 +1,77 @@
 import '../../main.css'
 import { CanvasJSChart } from 'canvasjs-react-charts'
-// import Clock from './navbar/Clock'
-
+import Title from './navbar/Title'
+import { useState, useEffect } from 'react';
+import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
+
+    const [totalProducts, setTotalProducts] = useState(0);
+    const [totalOrders, setTotalOrders] = useState(0);
+    const [statusOrder, setStatusOrder] = useState([]);
+    const [count, setCount] = useState(0);
+    const [staff, setStaff] = useState(0);
+
+    useEffect(() => {
+        //total products
+        axios.get('http://localhost:3001/products')
+            .then(res => {
+                let data = res.data;
+                let total = 0;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].amount) {
+                        total = total + Number(data[i].amount);
+                    }
+                }
+                setTotalProducts(total)
+            })
+            .catch(err => {
+                throw err;
+            })
+        // total Orders
+        axios.get('http://localhost:3001/orders')
+            .then(res => {
+                setTotalOrders(res.data.length)
+            })
+            .catch(err => {
+                throw err;
+            })
+        // mat hang sap het 
+        axios.get('http://localhost:3001/products')
+            .then(res => {
+                let data = res.data;
+                let count = 0;
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].amount && data[i].amount < 5) {
+                        count++;
+                    }
+                }
+                setCount(count)
+            })
+            .catch(err => {
+                throw err;
+            })
+        //total staff
+        axios.get('http://localhost:3001/staffs')
+            .then(res => {
+                setStaff(res.data.length)
+            })
+            .catch(err => {
+                throw err;
+            })
+        //status order
+        axios.get('http://localhost:3001/orders')
+            .then(res => {
+                for (let i = 0; i < 6; i++) {
+                    setStatusOrder(res.data)
+                }
+                console.log(statusOrder)
+            })
+            .catch(err => {
+                throw err;
+            })
+    })
 
     const options = {
         animationEnabled: true,
@@ -90,52 +158,62 @@ export default function HomePage() {
 
     return (
         <div className='homepage'>
-         {/* <Clock name={'Bảng điều khiển'}></Clock> */}
+            <divs className="row">
+                <Title title='Bảng điều khiển'></Title>
+            </divs>
             <div className="row">
-                {/* <!--Left--> */}
                 <div className="col-md-12 col-lg-6">
                     <div className="row">
-                        {/* <!-- col-6 --> */}
                         <div className="col-md-6">
-                            <div className="widget-small primary coloured-icon"><i className='icon bx bxs-user-account fa-3x'></i>
-                                <div className="info">
-                                    <h4>Tổng khách hàng</h4>
-                                    <p><b>56 khách hàng</b></p>
-                                    <p className="info-tong">Tổng số khách hàng được quản lý.</p>
+                            <Link to={'/staff'}>
+                                <div className="widget-small primary coloured-icon"><i className='icon bx bxs-user-account fa-3x'></i>
+                                    <div className="info">
+
+                                        <h4>Tổng Nhân viên</h4>
+                                        <p><b>{staff} Nhân Viên</b></p>
+                                        <p className="info-tong">Tổng số nhân viên được quản lý.</p>
+
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
-                        {/* <!-- col-6 --> */}
+
                         <div className="col-md-6">
-                            <div className="widget-small info coloured-icon"><i className='icon bx bxs-data fa-3x'></i>
-                                <div className="info">
-                                    <h4>Tổng sản phẩm</h4>
-                                    <p><b>1850 sản phẩm</b></p>
-                                    <p className="info-tong">Tổng số sản phẩm được quản lý.</p>
+                            <Link to={'/product'}>
+                                <div className="widget-small info coloured-icon"><i className='icon bx bxs-data fa-3x'></i>
+                                    <div className="info">
+                                        <h4>Tổng sản phẩm</h4>
+                                        <p><b>{totalProducts} sản phẩm</b></p>
+                                        <p className="info-tong">Tổng số sản phẩm được quản lý.</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
-                        {/* <!-- col-6 --> */}
+
                         <div className="col-md-6">
-                            <div className="widget-small warning coloured-icon"><i className='icon bx bxs-shopping-bags fa-3x'></i>
-                                <div className="info">
-                                    <h4>Tổng đơn hàng</h4>
-                                    <p><b>247 đơn hàng</b></p>
-                                    <p className="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
+                            <Link to={'/order'}>
+                                <div className="widget-small warning coloured-icon"><i className='icon bx bxs-shopping-bags fa-3x'></i>
+                                    <div className="info">
+                                        <h4>Tổng đơn hàng</h4>
+                                        <p><b>{totalOrders} đơn hàng</b></p>
+                                        <p className="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
-                        {/* <!-- col-6 --> */}
+
                         <div className="col-md-6">
-                            <div className="widget-small danger coloured-icon"><i className='icon bx bxs-error-alt fa-3x'></i>
-                                <div className="info">
-                                    <h4>Sắp hết hàng</h4>
-                                    <p><b>4 sản phẩm</b></p>
-                                    <p className="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                            <Link to={'/product'}>
+                                <div className="widget-small danger coloured-icon"><i className='icon bx bxs-error-alt fa-3x'></i>
+                                    <div className="info">
+                                        <h4>Sắp hết hàng</h4>
+                                        <p><b>{count} sản phẩm</b></p>
+                                        <p className="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
-                        {/* <!-- col-12 --> */}
+
                         <div className="col-md-12">
                             <div className="tile">
                                 <h3 className="tile-title">Tình trạng đơn hàng</h3>
@@ -150,102 +228,28 @@ export default function HomePage() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>AL3947</td>
-                                                <td>Phạm Thị Ngọc</td>
-                                                <td>
-                                                    19.770.000 đ
-                                                </td>
-                                                <td><span className="badge bg-info">Chờ xử lý</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ER3835</td>
-                                                <td>Nguyễn Thị Mỹ Yến</td>
-                                                <td>
-                                                    16.770.000 đ
-                                                </td>
-                                                <td><span className="badge bg-warning">Đang vận chuyển</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>MD0837</td>
-                                                <td>Triệu Thanh Phú</td>
-                                                <td>
-                                                    9.400.000 đ
-                                                </td>
-                                                <td><span className="badge bg-success">Đã hoàn thành</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>MT9835</td>
-                                                <td>Đặng Hoàng Phúc	</td>
-                                                <td>
-                                                    40.650.000 đ
-                                                </td>
-                                                <td><span className="badge bg-danger">Đã hủy	</span></td>
-                                            </tr>
+                                            {statusOrder.map(order => (
+                                                <tr key={order.id}>
+                                                    <td>{order.id}</td>
+                                                    <td>{order.customer}</td>
+                                                    <td>{order.total}</td>
+                                                    <td>{order.status}</td>
+                                                </tr>
+                                            ))}
                                         </tbody>
                                     </table>
                                 </div>
-                                {/* <!-- / div trống--> */}
                             </div>
                         </div>
-                        {/* <!-- / col-12 -->
-             <!-- col-12 --> */}
-                        <div className="col-md-12">
-                            <div className="tile">
-                                <h3 className="tile-title">Khách hàng mới</h3>
-                                <div>
-                                    <table className="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Tên khách hàng</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Số điện thoại</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>#183</td>
-                                                <td>Hột vịt muối</td>
-                                                <td>21/7/1992</td>
-                                                <td><span className="tag tag-success">0921387221</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#219</td>
-                                                <td>Bánh tráng trộn</td>
-                                                <td>30/4/1975</td>
-                                                <td><span className="tag tag-warning">0912376352</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#627</td>
-                                                <td>Cút rang bơ</td>
-                                                <td>12/3/1999</td>
-                                                <td><span className="tag tag-primary">01287326654</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#175</td>
-                                                <td>Hủ tiếu nam vang</td>
-                                                <td>4/12/20000</td>
-                                                <td><span className="tag tag-danger">0912376763</span></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                        {/* <!-- / col-12 --> */}
                     </div>
                 </div>
-                {/* <!--END left-->
-      <!--Right--> */}
+
                 <div className="col-md-12 col-lg-6">
                     <div className="row">
                         <div className="col-md-12">
                             <div className="tile">
                                 <h3 className="tile-title">Dữ liệu 6 tháng đầu vào</h3>
                                 <CanvasJSChart options={options} 	/* onRef={ref => this.chart = ref} */ />
-                                {/* </div> */}
                             </div>
                         </div>
                         <div className="col-md-12">
