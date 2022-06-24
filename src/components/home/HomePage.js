@@ -15,7 +15,7 @@ export default function HomePage() {
 
     useEffect(() => {
         //total products
-        axios.get('http://localhost:3001/products')
+        axios.get('https://json-server-api-product.herokuapp.com/products')
             .then(res => {
                 let data = res.data;
                 let total = 0;
@@ -30,7 +30,7 @@ export default function HomePage() {
                 throw err;
             })
         // total Orders
-        axios.get('http://localhost:3001/orders')
+        axios.get('https://json-server-api-product.herokuapp.com/orders')
             .then(res => {
                 setTotalOrders(res.data.length)
             })
@@ -38,7 +38,7 @@ export default function HomePage() {
                 throw err;
             })
         // mat hang sap het 
-        axios.get('http://localhost:3001/products')
+        axios.get('https://json-server-api-product.herokuapp.com/products')
             .then(res => {
                 let data = res.data;
                 let count = 0;
@@ -53,7 +53,7 @@ export default function HomePage() {
                 throw err;
             })
         //total staff
-        axios.get('http://localhost:3001/staffs')
+        axios.get('https://json-server-api-product.herokuapp.com/staffs')
             .then(res => {
                 setStaff(res.data.length)
             })
@@ -61,7 +61,7 @@ export default function HomePage() {
                 throw err;
             })
         //status order
-        axios.get('http://localhost:3001/orders')
+        axios.get('https://json-server-api-product.herokuapp.com/orders')
             .then(res => {
                 setStatusOrder(res.data)
             })
