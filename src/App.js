@@ -14,6 +14,10 @@ import Cenderlar from './components/home/Cendelar';
 import StaffPage from './components/home/staff/Staff';
 import StaffAdd from './components/home/staff/StaffAdd';
 import StaffDetail from './components/home/staff/StaffDetail';
+import OrdersPage from './components/home/orders/Orders';
+import OrderDetail from './components/home/orders/OrderDetail';
+import OrderAdd from './components/home/orders/OrderAdd';
+import Report from './components/home/report/Report';
 
 
 
@@ -38,8 +42,10 @@ function App() {
           <Route path={'/staff'} element={<StaffPage/>}></Route>
           <Route path={'/staff/add'} element={<StaffAdd/>}></Route>
           <Route path={`/staff/:staffId`} element={<StaffDetail/>}></Route>
-
-
+          <Route path='/order' element={<OrdersPage/>}></Route>
+          <Route path= {'/order/add'} element={<OrderAdd/>}></Route>
+          <Route path= {`/order/:orderId`} element={<OrderDetail/>}></Route>
+          <Route path='/report' element={<Report/>}></Route>
 
         </Routes>
       </LayOut>

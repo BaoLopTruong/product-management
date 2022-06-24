@@ -23,40 +23,34 @@ export default function Clock(props) {
             weekday[6] = "Thứ Bảy";
             let day = weekday[now.getDay()];
             setDay(day);
-            setMonth(checkTime(now.getMonth()+1))
+            setMonth(checkTime(now.getMonth() + 1))
             setDate(checkTime(now.getDate()));
             setHours(checkTime(now.getHours()));
             setMintues(checkTime(now.getMinutes()));
             setSeconds(checkTime(now.getSeconds()));
         }
-        
-        const checkTime =(time) =>{
-            if(time <10){
-               time = "0" + (time); 
+
+        const checkTime = (time) => {
+            if (time < 10) {
+                time = "0" + (time);
             }
             return time;
         }
-    
+
         setInterval(() => {
             updateTime();
         }, 1000)
     });
 
-    
+
 
     return (
         <div className='clock'>
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="app-title">
-                        <ul className="app-breadcrumb breadcrumb">
-                            <li className="breadcrumb-item"><b> {props.name}</b></li>
-                        </ul>
-                        <div id="clock" ><span className='date'> <p style={{float: 'right'}}>{hours}:{mintues}:{seconds} </p> <br></br>   
-                        <p style={{ float: 'right'}}> {day}, ngày {date}, tháng {month}, năm {year}</p></span>  </div>
-                    </div>
-                </div>
-            </div>
+            <span className='date'>
+                <p style={{ float: 'right' }}>{hours}:{mintues}:{seconds} </p>
+                <br></br>
+                <p style={{ float: 'right' }}> {day}, ngày {date}, tháng {month}, năm {year}</p>
+            </span>
         </div>
     )
 

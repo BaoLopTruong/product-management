@@ -30,7 +30,7 @@ export default function Navbar(props) {
                         <hr></hr>
                         <ul className="app-menu">
                               <li>
-                                    <Link to={{pathname:'/sell', state: "POS Bán Hàng" }} className="app-menu__item haha" >
+                                    <Link to={'/sell'} className="app-menu__item haha" >
                                           <i className='app-menu__icon bx bx-cart-alt'></i>
                                           <span className="app-menu__label">POS Bán Hàng</span>
                                     </Link>
@@ -52,36 +52,36 @@ export default function Navbar(props) {
                                     <span className="app-menu__label">Quản lý khách hàng</span></a>
                               </li> */}
                               <li>
-                                    <Link to={{pathname:'/product', state:{name:"Danh mục sản phẩm", category:"product"}}} className="app-menu__item" >
+                                    <Link to={'/product'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-purchase-tag-alt'></i>
                                           <span className="app-menu__label">Quản lý sản phẩm</span>
                                     </Link>
                               </li>
                               <li>
-                                    <Link to={'/product/add'} className="app-menu__item" href="table-data-oder.html">
+                                    <Link to={'/order'} className="app-menu__item" href="table-data-oder.html">
                                           <i className='app-menu__icon bx bx-task'></i>
                                           <span className="app-menu__label">Quản lý đơn hàng</span>
                                     </Link>
                               </li>
-                              <li>
+                              {/* <li>
                                     <Link to={'/internal'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-run'></i>
                                           <span
                                                 className="app-menu__label">Quản lý nội bộ
                                           </span>
                                     </Link>
-                              </li>
-                              <li>
+                              </li> */}
+                              {/* <li>
                                     <Link to={'/tablemoney'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-dollar'></i>
                                           <span
                                                 className="app-menu__label">Bảng kê lương</span>
                                     </Link>
-                              </li>
+                              </li> */}
                               <li>
                                     <Link to={'/report'} className="app-menu__item" >
                                           <i className='app-menu__icon bx bx-pie-chart-alt-2'></i>
-                                          <span className="app-menu__label">Báo cáo doanh thu</span>
+                                          <span className="app-menu__label">Báo cáo </span>
                                     </Link>
                               </li>
                               <li>

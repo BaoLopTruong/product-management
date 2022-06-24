@@ -1,18 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { addNewProduct } from '../../../redux/action';
-import { useDispatch, useSelector } from "react-redux";
+// import { addNewProduct } from '../../../redux/action';
+// import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Title from '../navbar/Title';
 
 export default function ProductAdd() {
 
     const [product, setProduct] = useState({});
     const [ newId, setNewId] = useState({});
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userlogined = useSelector(state => state.userlogined);
-    const products = useSelector(state => state.products);
+
+    // const dispatch = useDispatch();
+    // const userlogined = useSelector(state => state.userlogined);
+    // const products = useSelector(state => state.products);
 
     useEffect(() => {
         axios.get("http://localhost:3001/products/")
@@ -29,35 +30,30 @@ export default function ProductAdd() {
                 id: newId
             })
         })
-    },[newId]);
+    });
 
     const handleChange = (e) => {
-       
         setProduct({
             ...product,
             [e.target.name]: e.target.value
         })
         console.log(product)
     }
+
     const handleAdd = () => {
-        // dispatch(addNewProduct(product))
-        // alert("Add New Product Successfully");
-        // console.log(products)
-        // navigate('/product/')
+
         axios.post("http://localhost:3001/products/", product)
         .then(res =>{
             alert("Add new Product Succesfully");
             navigate('/product')
         })
-        .catch(er =>{
+        .catch(err =>{
             alert("some thing wrong")
         })
     }
+
     const  handleChangeImage =(event) => {
-      
         if(event.target.files && event.target.files[0]){
-          // console.log(URL.createObjectURL(event.target.files[0]))
-          //setContact({ image: URL.createObjectURL(event.target.files[0]) });
           let reader = new FileReader();
           reader.onload = (event) => {
             setProduct({ ...product, image: event.target.result });
@@ -68,10 +64,12 @@ export default function ProductAdd() {
 
     return (
         <div className="product-add">
+              <div className="row">
+                <Title title='Quản lý sản phẩm/ Tạo mới sản phẩm'></Title>
+            </div>
             <div className="row">
                 <div className="col-md-12">
                     <div className="tile">
-                        <h3 className="tile-title">Tạo mới sản phẩm</h3>
                         <div className="tile-body">
                             <div className="row element-button">
                                 <div className="col-sm-2">
@@ -96,8 +94,6 @@ export default function ProductAdd() {
                                     <label className="control-label">Tên sản phẩm</label>
                                     <input className="form-control" type="text" name='name' onChange={handleChange} ></input>
                                 </div>
-
-
                                 <div className="form-group  col-md-3">
                                     <label className="control-label">Số lượng</label>
                                     <input className="form-control" type="number" name='amount' onChange={handleChange} ></input>
@@ -122,6 +118,7 @@ export default function ProductAdd() {
                                         <option value="Giường người lớn">Giường người lớn</option>
                                         <option value="Giường trẻ em">Giường trẻ em</option>
                                         <option value="Bàn trang điểm">Bàn trang điểm</option>
+                                        <option value="Điện thoại di động">Điện thoại di động</option>
                                         <option value="Giá đỡ">Giá đỡ</option>
                                     </select>
                                 </div>
@@ -132,6 +129,7 @@ export default function ProductAdd() {
                                         <option value="Phong vũ">Phong vũ</option>
                                         <option value="Thế giới di động">Thế giới di động</option>
                                         <option value="FPT">FPT</option>
+                                        <option value="Nội thất Thành Phát">Nội thất Thành Phát</option>
                                         <option value="Orther">Orther</option>
                                     </select>
                                 </div>

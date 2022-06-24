@@ -2,21 +2,20 @@ import '../../../main.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Title from '../navbar/Title';
 // import { useDispatch, useSelector } from "react-redux";
 // import { editProduct } from '../../../redux/action';
 
 export default function ProductDetail() {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
-
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+
   useEffect(() => {
     if (productId) {
       axios.get(`http://localhost:3001/products/${productId}`)
         .then(res => {
           setProduct(res.data);
-
         })
         .catch(err => {
           throw err;
@@ -48,9 +47,9 @@ export default function ProductDetail() {
     console.log(product)
   }
 
-  const  handleChangeImage =(event) => {
-      
-    if(event.target.files && event.target.files[0]){
+  const handleChangeImage = (event) => {
+
+    if (event.target.files && event.target.files[0]) {
       // console.log(URL.createObjectURL(event.target.files[0]))
       //setContact({ image: URL.createObjectURL(event.target.files[0]) });
       let reader = new FileReader();
@@ -65,6 +64,9 @@ export default function ProductDetail() {
 
     <div className="modal-body">
       <div className="row">
+        <Title title='Quản lý sản phẩm/ Chỉnh sửa thông tin sản phẩm'></Title>
+      </div>
+      <div className="row">
         <div className="form-group  col-md-12">
           <span className="thong-tin-thanh-toan">
             <h5>Chỉnh sửa thông tin sản phẩm</h5>
@@ -74,7 +76,6 @@ export default function ProductDetail() {
       <form className="row">
         <div className="form-group col-md-3">
           <label className="control-label">Mã sản phẩm </label>
-
           <input className="form-control" type="number" value={product.id || ""} placeholder="" name='id' readOnly></input>
         </div>
         <div className="form-group col-md-3">
@@ -83,7 +84,6 @@ export default function ProductDetail() {
         </div>
         <div className="form-group  col-md-3">
           <label className="control-label">Số lượng</label>
-
           <input className="form-control" type="number" value={product.amount || ""} name='amount' onChange={handleChange} ></input>
         </div>
         <div className="form-group col-md-3 ">
@@ -108,7 +108,6 @@ export default function ProductDetail() {
             <option value="Bàn trang điểm">Bàn trang điểm</option>
             <option value="Giá đỡ">Giá đỡ</option>
             <option value="Điện thoại di động">Điện thoại di động</option>
-
           </select>
         </div>
         <div className="form-group col-md-3 ">
@@ -118,6 +117,7 @@ export default function ProductDetail() {
             <option value="Phong vũ">Phong vũ</option>
             <option value="Thế giới di động">Thế giới di động</option>
             <option value="FPT">FPT</option>
+            <option value="Nội thất Thành Phát">Nội thất Thành Phát</option>
             <option value="Orther">Orther</option>
           </select>
         </div>
@@ -125,7 +125,6 @@ export default function ProductDetail() {
           <label className="control-label">Giá bán</label>
           <input className="form-control" type="text" value={product.price || ""} name='price' onChange={handleChange} ></input>
         </div>
-
         <div className="form-group col-md-12">
           <label className="control-label">Ảnh sản phẩm</label>
           <div id="myfileupload">
@@ -135,7 +134,6 @@ export default function ProductDetail() {
         <div className="form-group col-md-12">
           <label className="control-label">Mô tả sản phẩm</label>
           <textarea className="form-control" value={product.mota || ""} name="mota" id="mota" onChange={handleChange}></textarea>
-          {/* <script>CKEDITOR.replace('mota');</script> */}
         </div>
       </form>
       <button className="btn btn-save" type="button" onClick={handleSave}>Lưu lại</button>
