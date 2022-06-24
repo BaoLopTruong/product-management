@@ -1,18 +1,12 @@
+import Title from "./navbar/Title";
 
 
 export default function Cenderlar() {
 
     return (
         <div className="cendelar">
-            <div className="row">
-                <div className="col-md-12">
-                    <div className="app-title">
-                        <ul className="app-breadcrumb breadcrumb">
-                            <li className="breadcrumb-item"><a href="#"><b>Lịch công tác</b></a></li>
-                        </ul>
-                        <div id="clock"></div>
-                    </div>
-                </div>
+                <div className="row">
+                <Title title='Lịch công tác'></Title>
             </div>
             <div className="row">
                 <div className="col-md-12">
@@ -31,8 +25,7 @@ export default function Cenderlar() {
                                         <div className="fc-event"><b>Tổ chức du lịch</b></div>
                                         <p className="animated-checkbox mt-20">
                                             <label>
-                                                {/* <input id="drop-remove" type="checkbox"> </input> */}
-                                                <input></input>
+                                                <input id="drop-remove" type="checkbox"></input>
                                                 <span className="label-text">Hủy bỏ sau khi thả</span> 
                                             </label>
                                         </p>
