@@ -14,9 +14,8 @@ export default function OrderAdd() {
     useEffect(() => {
         axios.get("http://localhost:3001/orders/")
         .then(res =>{
-            sortOrder(res.data)
-            console.log(res.data[res.data.length-1].id)
-            setNewId(parseInt( res.data[res.data.length-1].id)+1)
+            sortOrder(res.data);
+            setNewId(parseInt( res.data[res.data.length-1].id)+1);
         })
         .catch(err =>{
             console.log(err)
@@ -34,8 +33,8 @@ export default function OrderAdd() {
             ...order,
             [e.target.name]: e.target.value
         })
-        console.log(order)
     }
+
     const handleAdd = () => {
         axios.post("http://localhost:3001/orders/", order)
         .then(res =>{
@@ -55,9 +54,6 @@ export default function OrderAdd() {
                     orders[i] = orders[i + 1];
                     orders[i + 1] = swap;
                 }
-            }
-            else {
-                console.log("not ok")
             }
         }    
     }

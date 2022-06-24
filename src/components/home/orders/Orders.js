@@ -8,9 +8,7 @@ import Title from '../navbar/Title';
 export default function OrdersPage() {
 
     const navigate = useNavigate();
-
     const [orders, setOrrders] = useState([])
-
 
     useEffect(() => {
         axios.get(`http://localhost:3001/orders/`)
@@ -22,7 +20,6 @@ export default function OrdersPage() {
                 throw err
             })
             .finally(() => {
-                console.log(orders)
             })
     });
 
@@ -30,6 +27,7 @@ export default function OrdersPage() {
         navigate(`/order/${e.target.id}`)
         console.log(e.target.id)
     }
+
     const handleDelete = (e) => {
         console.log(e.target.id)
         axios.delete(`http://localhost:3001/orders/` + e.target.id)
@@ -40,6 +38,7 @@ export default function OrdersPage() {
                 alert("Something wrong" + err)
             })
     }
+
     const sortOrder = (orders) => {
         for (let i = 0; i < orders.length; i++) {
             if (orders[i + 1]) {
@@ -49,13 +48,9 @@ export default function OrdersPage() {
                     orders[i + 1] = swap;
                 }
             }
-            else {
-                console.log("not ok")
-            }
         }
-        console.log(orders)
-
     }
+
     return (
         <div className='order-page'>
             <div className="row">
@@ -67,14 +62,13 @@ export default function OrdersPage() {
                         <div className="tile-body">
                             <div className="row element-button">
                                 <div className="col-sm-2">
-
-                                    <Link to={'/order/add'} className="btn btn-add btn-sm" href="form-add-don-hang.html" title="Thêm"><i className="fas fa-plus"></i>
-                                        Tạo mới đơn hàng</Link>
+                                    <Link to={'/order/add'} className="btn btn-add btn-sm" href="form-add-don-hang.html" title="Thêm">
+                                    <i className="fas fa-plus"></i>Tạo mới đơn hàng
+                                    </Link>
                                 </div>
-
                                 <div className="col-sm-2">
-                                    <span className="btn btn-delete btn-sm" type="button" title="Xóa" ><i
-                                        className="fas fa-trash-alt"></i> Xóa tất cả </span>
+                                    <span className="btn btn-delete btn-sm" type="button" title="Xóa" >
+                                    <i className="fas fa-trash-alt"></i> Xóa tất cả </span>
                                 </div>
                             </div>
                             <table className="table table-hover table-bordered" id="sampleTable">
@@ -105,7 +99,6 @@ export default function OrdersPage() {
                                                 <button id={order.id} className="btn btn-primary btn-sm trash" type="button" title="Xóa" onClick={handleDelete}>
                                                     <i id={order.id} className="fas fa-trash-alt"></i>
                                                 </button>
-
                                             </td>
                                         </tr>
                                     ))}
@@ -115,7 +108,6 @@ export default function OrdersPage() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }
