@@ -13,7 +13,7 @@ export default function Navbar() {
                   <div className="app-sidebar__overlay" data-toggle="sidebar"></div>
                   <aside className="app-sidebar">
                         <div className="app-sidebar__user">
-                              <img className="app-sidebar__user-avatar" src={'../../../img-staff/lnb.jpg'} width="50px" alt="User Imagee"> </img>
+                              {/* <img className="app-sidebar__user-avatar" src={'../../../img-staff/lnb.jpg'} width="50px" alt="User Imagee"> </img> */}
                               <div>
                                     <p className="app-sidebar__user-name"><b>Lê Ngọc Bảo</b></p>
                                     <p className="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
