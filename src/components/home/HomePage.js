@@ -63,10 +63,7 @@ export default function HomePage() {
         //status order
         axios.get('http://localhost:3001/orders')
             .then(res => {
-                for (let i = 0; i < 6; i++) {
-                    setStatusOrder(res.data)
-                }
-                console.log(statusOrder)
+                setStatusOrder(res.data)
             })
             .catch(err => {
                 throw err;
@@ -177,7 +174,6 @@ export default function HomePage() {
                                 </div>
                             </Link>
                         </div>
-
                         <div className="col-md-6">
                             <Link to={'/product'}>
                                 <div className="widget-small info coloured-icon"><i className='icon bx bxs-data fa-3x'></i>
@@ -189,7 +185,6 @@ export default function HomePage() {
                                 </div>
                             </Link>
                         </div>
-
                         <div className="col-md-6">
                             <Link to={'/order'}>
                                 <div className="widget-small warning coloured-icon"><i className='icon bx bxs-shopping-bags fa-3x'></i>
@@ -201,7 +196,6 @@ export default function HomePage() {
                                 </div>
                             </Link>
                         </div>
-
                         <div className="col-md-6">
                             <Link to={'/product'}>
                                 <div className="widget-small danger coloured-icon"><i className='icon bx bxs-error-alt fa-3x'></i>
@@ -213,7 +207,6 @@ export default function HomePage() {
                                 </div>
                             </Link>
                         </div>
-
                         <div className="col-md-12">
                             <div className="tile">
                                 <h3 className="tile-title">Tình trạng đơn hàng</h3>
