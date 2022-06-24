@@ -11,7 +11,7 @@ export default function OrdersPage() {
     const [orders, setOrrders] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/orders/`)
+        axios.get(`https://json-server-api-product.herokuapp.com/orders/`)
             .then(res => {
                 sortOrder(res.data)
                 setOrrders(res.data)
@@ -30,7 +30,7 @@ export default function OrdersPage() {
 
     const handleDelete = (e) => {
         console.log(e.target.id)
-        axios.delete(`http://localhost:3001/orders/` + e.target.id)
+        axios.delete(`https://json-server-api-product.herokuapp.com/orders/` + e.target.id)
             .then(res => {
                 alert("Deleted Success")
             })

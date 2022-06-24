@@ -11,7 +11,7 @@ export default function OrderDetail() {
 
     useEffect(() => {
         if (orderId) {
-            axios.get(`http://localhost:3001/orders/${orderId}`)
+            axios.get(`https://json-server-api-product.herokuapp.com/orders/${orderId}`)
                 .then(res => {
                     setOrder(res.data);
                 })
@@ -24,7 +24,7 @@ export default function OrderDetail() {
     }, [orderId]);
 
     const handleSave = () => {
-        axios.put(`http://localhost:3001/orders/${orderId}`, order)
+        axios.put(`https://json-server-api-product.herokuapp.com/orders/${orderId}`, order)
             .then(res => {
                 alert("Update successfully");
                 navigate('/order');

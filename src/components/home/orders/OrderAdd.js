@@ -12,7 +12,7 @@ export default function OrderAdd() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/orders/")
+        axios.get("https://json-server-api-product.herokuapp.com/orders")
         .then(res =>{
             sortOrder(res.data);
             setNewId(parseInt( res.data[res.data.length-1].id)+1);
@@ -36,7 +36,7 @@ export default function OrderAdd() {
     }
 
     const handleAdd = () => {
-        axios.post("http://localhost:3001/orders/", order)
+        axios.post("https://json-server-api-product.herokuapp.com//orders/", order)
         .then(res =>{
             alert("Add new Product Succesfully");
             navigate('/order')
