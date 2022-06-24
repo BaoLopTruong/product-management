@@ -11,7 +11,7 @@ export default function StaffPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/staffs/")
+        axios.get("https://json-server-api-product.herokuapp.com/staffs/")
             .then(res => {
                 setStaff(res.data)
             })
@@ -26,8 +26,7 @@ export default function StaffPage() {
     }
 
     const handleDelete = (e) => {
-        console.log(e.target.id)
-        axios.delete(`http://localhost:3001/staffs/` + e.target.id)
+        axios.delete(`https://json-server-api-product.herokuapp.com/staffs/` + e.target.id)
             .then(res => {
                 alert("Deleted Success")
             })

@@ -9,10 +9,10 @@ export default function StaffDetail() {
     const { staffId } = useParams();
     const [staff, setStaff] = useState({});
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         if (staffId) {
-            axios.get(`http://localhost:3001/staffs/${staffId}`)
+            axios.get(`https://json-server-api-product.herokuapp.com/staffs/${staffId}`)
                 .then(res => {
                     setStaff(res.data);
 
@@ -27,7 +27,7 @@ export default function StaffDetail() {
     }, [staffId]);
 
     const handleSave = () => {
-        axios.put(`http://localhost:3001/staffs/${staffId}`, staff)
+        axios.put(`https://json-server-api-product.herokuapp.com/staffs/${staffId}`, staff)
             .then(res => {
                 alert("Update successfully");
                 navigate('/staff');
@@ -42,7 +42,6 @@ export default function StaffDetail() {
             ...staff,
             [e.target.name]: e.target.value
         })
-        console.log(staff)
     }
 
     const handleChangeImage = (event) => {

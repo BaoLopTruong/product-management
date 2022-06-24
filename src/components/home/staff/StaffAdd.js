@@ -12,9 +12,8 @@ export default function StaffAdd() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/staffs/")
+        axios.get("https://json-server-api-product.herokuapp.com/staffs/")
             .then(res => {
-                console.log(res.data[res.data.length - 1].id)
                 setNewId(parseInt(res.data[res.data.length - 1].id) + 1)
             })
             .catch(err => {
@@ -33,10 +32,9 @@ export default function StaffAdd() {
             ...staff,
             [e.target.name]: e.target.value
         })
-        console.log(staff)
     }
     const handleAdd = () => {
-        axios.post("http://localhost:3001/staffs/", staff)
+        axios.post("https://json-server-api-product.herokuapp.com/staffs/", staff)
             .then(res => {
                 alert("Add new Product Succesfully");
                 navigate('/staff')
