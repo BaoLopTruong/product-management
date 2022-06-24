@@ -10,9 +10,8 @@ export default function ProductAdd() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/products/")
+        axios.get("https://json-server-api-product.herokuapp.com/products/")
         .then(res =>{
-            console.log(res.data[res.data.length-1].id)
             setNewId(parseInt( res.data[res.data.length-1].id) + 1 )
         })
         .catch(err =>{
@@ -31,12 +30,11 @@ export default function ProductAdd() {
             ...product,
             [e.target.name]: e.target.value
         })
-        console.log(product)
     }
 
     const handleAdd = () => {
 
-        axios.post("http://localhost:3001/products/", product)
+        axios.post("https://json-server-api-product.herokuapp.com/products/", product)
         .then(res =>{
             alert("Add new Product Succesfully");
             navigate('/product')

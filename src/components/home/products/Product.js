@@ -11,7 +11,7 @@ export default function ProductPage() {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/products/`)
+        axios.get(`https://json-server-api-product.herokuapp.com/products/`)
             .then(res => {
                 sortProduct(res.data)
                 setProducts(res.data)
@@ -30,7 +30,7 @@ export default function ProductPage() {
 
     const handleDelete = (e) => {
         console.log(e.target.id)
-        axios.delete(`http://localhost:3001/products/` + e.target.id)
+        axios.delete(`https://json-server-api-product.herokuapp.com/products/` + e.target.id)
             .then(res => {
                 alert("Deleted Success")
             })
@@ -47,9 +47,6 @@ export default function ProductPage() {
                     products[i] = products[i + 1];
                     products[i + 1] = swap;
                 }
-            }
-            else {
-                console.log("no swap")
             }
         }
     }

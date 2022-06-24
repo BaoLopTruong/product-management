@@ -11,7 +11,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     if (productId) {
-      axios.get(`http://localhost:3001/products/${productId}`)
+      axios.get(`https://json-server-api-product.herokuapp.com/products/${productId}`)
         .then(res => {
           setProduct(res.data);
         })
@@ -28,7 +28,7 @@ export default function ProductDetail() {
   }
 
   const handleSave = () => {
-    axios.put(`http://localhost:3001/products/${productId}`, product)
+    axios.put(`https://json-server-api-product.herokuapp.com/products/${productId}`, product)
       .then(res => {
         alert("Update successfully");
         navigate('/product');
