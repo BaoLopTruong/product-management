@@ -31,7 +31,7 @@ export const fakeLogin = payload => {
 export const getProducts = () => {
   return async dispatch => {
     const response = await axios.get(
-      "http://localhost:3001/products"
+      "https://json-server-api-product.herokuapp.com/products"
     );
     dispatch({
       type: FETCH_PRODUCT_SUCCESS,
@@ -42,7 +42,7 @@ export const getProducts = () => {
 
 export const getUsers = () => {
   return async dispatch => {
-    const response = await axios.get("http://localhost:3001/users");
+    const response = await axios.get("https://json-server-api-product.herokuapp.com/users");
     dispatch({
       type: FETCH_USER_SUCCESS ,
       payload: response.data
@@ -53,7 +53,7 @@ export const getUsers = () => {
 
 export const addNewProduct = (product) => {
   return async dispatch => {
-    const response = await axios.post("http://localhost:3001/products/", product);
+    const response = await axios.post("https://json-server-api-product.herokuapp.com/products/", product);
     dispatch({
       type: FETCH_ADD_PRODUCT_SUCCESS,
       payload: response.data
@@ -65,7 +65,7 @@ export const addNewProduct = (product) => {
 
 export const editProduct = (product) => {
   return async dispatch => {
-    const response = await axios.put(`http://localhost:3001/products/${product.id}`, product);
+    const response = await axios.put(`https://json-server-api-product.herokuapp.com/products/${product.id}`, product);
     dispatch({
       type: FETCH_EDIT_PRODUCT_SUCCESS,
       payload: response.data
@@ -76,7 +76,7 @@ export const editProduct = (product) => {
 
 export const deleteProduct = (productId) => {
   return async dispatch => {
-    const response = await axios.delete(`http://localhost:3001/products/`+ productId);
+    const response = await axios.delete(`https://json-server-api-product.herokuapp.com/products/`+ productId);
     dispatch({
       type: FETCH_DELETE_PRODUCT_SUCCESS,
       payload: response.data
