@@ -73,31 +73,50 @@ export default function HomePage() {
     const options = {
         animationEnabled: true,
         title: {
-            text: "Number of New Customers"
+            text: ""
         },
         axisY: {
-            title: "Number of Customers"
+            title: ""
         },
         toolTip: {
             shared: true
         },
         data: [{
             type: "spline",
-            name: "2016",
+            name: "Jan",
             showInLegend: true,
             dataPoints: [
-                { y: 155, label: "Jan" },
-                { y: 150, label: "Feb" },
-                { y: 152, label: "Mar" },
-                { y: 148, label: "Apr" },
-                { y: 142, label: "May" },
-                { y: 150, label: "Jun" },
-                { y: 146, label: "Jul" },
-                { y: 149, label: "Aug" },
-                { y: 153, label: "Sept" },
-                { y: 158, label: "Oct" },
-                { y: 154, label: "Nov" },
-                { y: 150, label: "Dec" }
+                { y: 155, label: "Day1" },
+                { y: 150, label: "Day2" },
+                { y: 152, label: "Day3" },
+                { y: 148, label: "Day4" },
+                { y: 142, label: "Day5" },
+                { y: 150, label: "Day6" },
+                { y: 146, label: "Day7" },
+                { y: 149, label: "Day8" },
+                { y: 153, label: "Day9" },
+                { y: 158, label: "Day10" },
+                { y: 154, label: "Day11" },
+                { y: 150, label: "Day12" },
+                { y: 210, label: "Day13" },
+                { y: 150, label: "Day12" },
+                { y: 150, label: "Day14" },
+                { y: 180, label: "Day15" },
+                { y: 150, label: "Day16" },
+                { y: 198, label: "Day17" },
+                { y: 150, label: "Day18" },
+                { y: 150, label: "Day19" },
+                { y: 123, label: "Day20" },
+                { y: 150, label: "Day21" },
+                { y: 123, label: "Day22" },
+                { y: 150, label: "Day23" },
+                { y: 150, label: "Day24" },
+                { y: 112, label: "Day25" },
+                { y: 150, label: "Day26" },
+                { y: 150, label: "Day27" },
+                { y: 190, label: "Day28" },
+                { y: 150, label: "Day29" },
+                { y: 200, label: "Day30" },
             ]
         },
         {
@@ -105,18 +124,37 @@ export default function HomePage() {
             name: "2017",
             showInLegend: true,
             dataPoints: [
-                { y: 172, label: "Jan" },
-                { y: 173, label: "Feb" },
-                { y: 175, label: "Mar" },
-                { y: 172, label: "Apr" },
-                { y: 162, label: "May" },
-                { y: 165, label: "Jun" },
-                { y: 172, label: "Jul" },
-                { y: 168, label: "Aug" },
-                { y: 175, label: "Sept" },
-                { y: 170, label: "Oct" },
-                { y: 165, label: "Nov" },
-                { y: 169, label: "Dec" }
+                { y: 155, label: "Day1" },
+                { y: 160, label: "Day2" },
+                { y: 200, label: "Day3" },
+                { y: 178, label: "Day4" },
+                { y: 162, label: "Day5" },
+                { y: 190, label: "Day6" },
+                { y: 176, label: "Day7" },
+                { y: 129, label: "Day8" },
+                { y: 193, label: "Day9" },
+                { y: 128, label: "Day10" },
+                { y: 100, label: "Day11" },
+                { y: 120, label: "Day12" },
+                { y: 190, label: "Day13" },
+                { y: 200, label: "Day12" },
+                { y: 110, label: "Day14" },
+                { y: 150, label: "Day15" },
+                { y: 150, label: "Day16" },
+                { y: 150, label: "Day17" },
+                { y: 150, label: "Day18" },
+                { y: 130, label: "Day19" },
+                { y: 150, label: "Day20" },
+                { y: 150, label: "Day21" },
+                { y: 200, label: "Day22" },
+                { y: 121, label: "Day23" },
+                { y: 150, label: "Day24" },
+                { y: 142, label: "Day25" },
+                { y: 150, label: "Day26" },
+                { y: 150, label: "Day27" },
+                { y: 123, label: "Day28" },
+                { y: 190, label: "Day29" },
+                { y: 150, label: "Day30" },
             ]
         }]
     }
@@ -125,7 +163,7 @@ export default function HomePage() {
         exportEnabled: true,
         theme: "light2", //"light1", "dark1", "dark2"
         title: {
-            text: "Simple Column Chart with Index Labels"
+            text: ""
         },
         axisY: {
             includeZero: true
@@ -136,19 +174,19 @@ export default function HomePage() {
             indexLabelFontColor: "#5A5757",
             indexLabelPlacement: "outside",
             dataPoints: [
-                { x: 10, y: 71 },
-                { x: 20, y: 55 },
-                { x: 30, y: 50 },
-                { x: 40, y: 65 },
-                { x: 50, y: 71 },
-                { x: 60, y: 68 },
-                { x: 70, y: 38 },
-                { x: 80, y: 92, indexLabel: "Highest" },
-                { x: 90, y: 54 },
-                { x: 100, y: 60 },
-                { x: 110, y: 21 },
-                { x: 120, y: 49 },
-                { x: 130, y: 36 }
+                { x: 10, y: 71, indexLabel: "IphoneX" },
+                { x: 20, y: 55, indexLabel: "Oppo Neo2"  },
+                { x: 30, y: 50, indexLabel: "SamSung Galaxy S8"  },
+                { x: 40, y: 65, indexLabel: "Bàn ăn"  },
+                { x: 50, y: 71, indexLabel: "Ghế ngồi"  },
+                { x: 60, y: 68, indexLabel: "Bàn Thông Minh"  },
+                { x: 70, y: 38, indexLabel: "Tivi"  },
+                { x: 80, y: 92, indexLabel: "Giá đỡ" },
+                { x: 90, y: 54, indexLabel: "Tủ lạnh"  },
+                { x: 100, y: 60, indexLabel: "Máy Giặt"  },
+                { x: 110, y: 21, indexLabel: "Laptop"  },
+                { x: 120, y: 49, indexLabel: "Màn hình"  },
+                { x: 130, y: 36, indexLabel: "Kệ"  }
             ]
         }]
     }
@@ -241,14 +279,14 @@ export default function HomePage() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="tile">
-                                <h3 className="tile-title">Dữ liệu 6 tháng đầu vào</h3>
-                                <CanvasJSChart options={options} 	/* onRef={ref => this.chart = ref} */ />
+                                <h3 className="tile-title">Thống kê Sản phẩm đầu vào</h3>
+                                <CanvasJSChart options={options2} 	/* onRef={ref => this.chart = ref} */ />
                             </div>
                         </div>
                         <div className="col-md-12">
                             <div className="tile">
-                                <h3 className="tile-title">Thống kê 6 tháng doanh thu</h3>
-                                <CanvasJSChart options={options2} 	/* onRef={ref => this.chart = ref} */ />
+                                <h3 className="tile-title">Thống kê doanh thu</h3>
+                                <CanvasJSChart options={options} 	/* onRef={ref => this.chart = ref} */ />
                             </div>
                         </div>
                     </div>
