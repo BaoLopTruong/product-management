@@ -206,7 +206,7 @@ export default function Report() {
                                         <tr key={product.id}>
                                             <td>{product.id}</td>
                                             <td>{product.name}</td>
-                                            <td>{product.price}</td>
+                                            <td>{product.price} đ</td>
                                             <td>{product.category}</td>
                                         </tr>
                                     ))}
