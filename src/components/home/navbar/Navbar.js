@@ -1,8 +1,24 @@
 import '../../../main.css'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Navbar() {
-      
+      const [username, setUser] = useState([]);
+
+      useEffect(() => {
+       axios.get("https://json-server-api-product.herokuapp.com/users/1/profiles")
+       .then(res =>{
+            setUser(res.data)
+       })
+       .catch(err =>{
+            throw err;
+       })
+       .finally(() =>{
+ 
+       })     
+      });
+
       return (
             <div >
                   <header className="app-header">
@@ -15,7 +31,11 @@ export default function Navbar() {
                         <div className="app-sidebar__user">
                               {/* <img className="app-sidebar__user-avatar" src={'../../../img-staff/lnb.jpg'} width="50px" alt="User Imagee"> </img> */}
                               <div>
-                                    <p className="app-sidebar__user-name"><b>Lê Ngọc Bảo</b></p>
+                                    <p className="app-sidebar__user-name"><b></b></p>
+                                    {username.map((user) =>(
+                                    <p key={user.id} className="app-sidebar__user-name"><b>{user.name}</b></p>
+
+                                    ))}
                                     <p className="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
                               </div>
                         </div>
