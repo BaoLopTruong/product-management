@@ -57,18 +57,6 @@ export default function Navbar() {
                                           <span className="app-menu__label">Báo cáo </span>
                                     </Link>
                               </li>
-                              {/* <li>
-                                    <Link to={'/cenderlar'} className="app-menu__item" >
-                                          <i className='app-menu__icon bx bx-calendar-check'></i>
-                                          <span className="app-menu__label">Lịch công tác </span>
-                                    </Link>
-                              </li> */}
-                              <li>
-                                    <Link to={'/setting'} className="app-menu__item" >
-                                          <i className='app-menu__icon bx bx-cog'></i>
-                                          <span className="app-menu__label">Cài đặt</span>
-                                    </Link>
-                              </li>
                         </ul>
                   </aside>
     
